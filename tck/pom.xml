@@ -503,7 +503,7 @@
             </activation>
 
             <properties>
-                <galleon.skip>false</galleon.skip>
+                <wildfly.skip>false</wildfly.skip>
             </properties>
         </profile>
         <profile>
@@ -515,7 +515,7 @@
             </activation>
 
             <properties>
-                <galleon.skip>true</galleon.skip>
+                <wildfly.skip>true</wildfly.skip>
             </properties>
         </profile>
         <profile>
@@ -530,6 +530,7 @@
                 <version.org.wildfly>27.0.0.Alpha2-SNAPSHOT</version.org.wildfly>
                 <version.org.wildfly.arquillian>5.0.0.Alpha2</version.org.wildfly.arquillian>
                 <version.org.wildfly.core>19.0.0.Beta11</version.org.wildfly.core>
+                <version.org.wildfly.wildfly-maven-plugin>3.0.0.Final</version.org.wildfly.wildfly-maven-plugin>
                 <version.org.wildfly.plugins>2.0.2.Final</version.org.wildfly.plugins>
                 
 
@@ -617,7 +618,7 @@
                         <artifactId>galleon-maven-plugin</artifactId>
                         <version>${version.org.jboss.galleon}</version>
                         <configuration>
-                            <skip>${galleon.skip}</skip>
+                            <skip>${wildfly.skip}</skip>
                             <install-dir>${wildfly.home}</install-dir>
                             <record-state>false</record-state>
                             <log-time>${galleon.log.time}</log-time>
@@ -662,7 +663,30 @@
                             </execution>
                         </executions>
                     </plugin>
-
+		            <plugin>
+		                <groupId>org.wildfly.plugins</groupId>
+		                <artifactId>wildfly-maven-plugin</artifactId>
+		                <version>${version.org.wildfly.wildfly-maven-plugin}</version>
+		                <configuration>
+		                    <skip>${wildfly.skip}</skip>
+		                </configuration>
+		                <executions>
+		                    <execution>
+		                        <id>configure-server</id>
+		                        <phase>compile</phase>
+		                        <goals>
+		                            <goal>execute-commands</goal>
+		                        </goals>
+		                        <configuration>
+		                            <jboss-home>${wildfly.home}</jboss-home>
+		                            <offline>true</offline>
+		                            <scripts>
+		                                <script>${project.basedir}/wildfly/configure-server.cli</script>
+		                            </scripts>
+		                        </configuration>
+		                    </execution>
+		                </executions>
+		            </plugin>
                     <plugin>
                         <groupId>com.github.ekryd.echo-maven-plugin</groupId>
                         <artifactId>echo-maven-plugin</artifactId>

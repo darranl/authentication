@@ -1,0 +1,4 @@
+embed-server --admin-only=true
+/subsystem=logging/logger=org.wildfly.security:add(level=TRACE)
+/subsystem=undertow/application-security-domain=other:write-attribute(name=integrated-jaspi, value=false)
+stop-embedded-server
