@@ -494,6 +494,125 @@
             </build>
         </profile>
 
+        <profile>
+            <id>is-tck-root</id>
+            <activation>
+                <file>
+                    <exists>zip.xml</exists>
+                </file>
+            </activation>
+
+            <properties>
+                <galleon.skip>false</galleon.skip>
+            </properties>
+        </profile>
+        <profile>
+            <id>is-not-tck-root</id>
+            <activation>
+                <file>
+                    <missing>zip.xml</missing>
+                </file>
+            </activation>
+
+            <properties>
+                <galleon.skip>true</galleon.skip>
+            </properties>
+        </profile>
+        <profile>
+            <id>wildfly</id>
+
+            <properties>
+                <!--  Versions -->
+                <version.org.jboss.galleon>4.2.8.Final</version.org.jboss.galleon>
+                <version.org.wildfly>27.0.0.Alpha2-SNAPSHOT</version.org.wildfly>
+
+                <!-- Build Properties -->
+                <galleon.fork.embedded>true</galleon.fork.embedded>
+                <galleon.log.time>true</galleon.log.time>
+                <galleon.offline>false</galleon.offline>
+                
+                <wildfly.home>${project.build.directory}/wildfly</wildfly.home>
+            </properties>
+
+            <dependencies>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jboss.galleon</groupId>
+                        <artifactId>galleon-maven-plugin</artifactId>
+                        <version>${version.org.jboss.galleon}</version>
+                        <configuration>
+                            <skip>${galleon.skip}</skip>
+                            <install-dir>${wildfly.home}</install-dir>
+                            <record-state>false</record-state>
+                            <log-time>${galleon.log.time}</log-time>
+                            <offline>${galleon.offline}</offline>
+                            <plugin-options>
+                                <!--<jboss-maven-dist/> -->
+                                <jboss-fork-embedded>${galleon.fork.embedded}</jboss-fork-embedded>
+                                <jboss-jakarta-transform-artifacts>true</jboss-jakarta-transform-artifacts>
+                            </plugin-options>
+                            <feature-packs>
+                                <feature-pack>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-preview-feature-pack</artifactId>
+                                    <version>${version.org.wildfly}</version>
+                                    <inherit-configs>false</inherit-configs>
+                                    <included-configs>
+                                        <config>
+                                            <model>standalone</model>
+                                            <name>standalone-full.xml</name>
+                                        </config>
+                                        <config>
+                                            <model>standalone</model>
+                                            <name>standalone.xml</name>
+                                        </config>
+                                    </included-configs>
+                                    <excluded-packages>
+                                        <name>product.conf</name>
+                                        <name>docs.schema</name>
+                                        <name>appclient</name>
+                                        <name>domain</name>
+                                    </excluded-packages>
+                                </feature-pack>
+                            </feature-packs>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>server-provisioning</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>provision</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>com.github.ekryd.echo-maven-plugin</groupId>
+                        <artifactId>echo-maven-plugin</artifactId>
+                        <version>1.3.2</version>
+                        <configuration>
+                            <message>
+                               WildFly Home = ${wildfly.home}
+                            </message>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>server-provisioning</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>echo</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
 	<!-- 
             The profiles for Tomcat and Piranha are currently out of date and don't' work.
             They are here as starter for future working profiles.
