@@ -7,7 +7,7 @@
     <container qualifier="default" default="true">
         <configuration>
             <property name="jbossHome">${test.wildfly.home}</property>
-            <!--<property name="javaVmArguments">${debugJvmArgs}</property>-->
+            <property name="javaVmArguments">${debugJvmArgs}</property>
             <property name="serverName">wildfly</property>
             <property name="hostName">${tck_hostname}</property>
             <property name="username">${tck_username}</property>

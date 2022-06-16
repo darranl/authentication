@@ -541,6 +541,7 @@
                 
                 <wildfly.home>${project.build.directory}/wildfly</wildfly.home>
                 <test.wildfly.home>${project.basedir}/../target/wildfly</test.wildfly.home>
+                <debugJvmArgs/>
             </properties>
 
             <dependencies>
@@ -745,7 +746,18 @@
                 </testResources>
             </build>
         </profile>
-
+        <profile>
+            <id>debug</id>
+            <activation>
+                <property>
+                    <name>debug</name>
+                </property>
+            </activation>
+            <properties>
+                <debug.port>8787</debug.port>
+                <debugJvmArgs>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:${debug.port}</debugJvmArgs>
+            </properties>
+        </profile>
 	<!-- 
             The profiles for Tomcat and Piranha are currently out of date and don't' work.
             They are here as starter for future working profiles.
