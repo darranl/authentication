@@ -125,7 +125,7 @@
             </dependency>
             <dependency>
                 <groupId>org.omnifaces.arquillian</groupId>
-   			    <artifactId>glassfish-client-ee9</artifactId>
+                   <artifactId>glassfish-client-ee9</artifactId>
                 <version>1.0</version>
                 <scope>test</scope>
             </dependency>
@@ -250,11 +250,11 @@
         </testResources>
         <pluginManagement>
             <plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.10.1</version>
-				</plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.10.1</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
@@ -545,22 +545,22 @@
             </properties>
 
             <dependencies>
-		        <dependency>
-		            <groupId>jakarta.servlet</groupId>
-		            <artifactId>jakarta.servlet-api</artifactId>
-		            <version>${version.jakarta.servlet}</version>
-		        </dependency>
+                <dependency>
+                    <groupId>jakarta.servlet</groupId>
+                    <artifactId>jakarta.servlet-api</artifactId>
+                    <version>${version.jakarta.servlet}</version>
+                </dependency>
                 <dependency>
                     <groupId>org.jboss.logging</groupId>
                     <artifactId>jboss-logging</artifactId>
                     <version>${version.org.jboss.logging}</version>
-		            <exclusions>
-		                <exclusion>
-		                    <groupId>*</groupId>
-		                    <artifactId>*</artifactId>
-		                </exclusion>
-		            </exclusions>
-		            <scope>test</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>*</groupId>
+                            <artifactId>*</artifactId>
+                        </exclusion>
+                    </exclusions>
+                    <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.jboss.remotingjmx</groupId>
@@ -568,48 +568,48 @@
                     <version>${version.org.jboss.remoting-jmx}</version>
                     <scope>test</scope>
                 </dependency>
-		        <dependency>
-		            <groupId>org.wildfly.arquillian</groupId>
-		            <artifactId>wildfly-arquillian-common</artifactId>
-		            <version>${version.org.wildfly.arquillian}</version>
-		            <exclusions>
-		                <exclusion>
-		                    <groupId>*</groupId>
-		                    <artifactId>*</artifactId>
-		                </exclusion>
-		            </exclusions>
-		            <scope>test</scope>
-		        </dependency>
-		        <dependency>
-		            <groupId>org.wildfly.arquillian</groupId>
-		            <artifactId>wildfly-arquillian-container-managed</artifactId>
-		            <version>${version.org.wildfly.arquillian}</version>
-		            <exclusions>
-		                <exclusion>
-		                    <groupId>*</groupId>
-		                    <artifactId>*</artifactId>
-		                </exclusion>
-		            </exclusions>
-		            <scope>test</scope>
-		        </dependency>
-		        <dependency>
-		            <groupId>org.wildfly.core</groupId>
-		            <artifactId>wildfly-controller-client</artifactId>
-		            <version>${version.org.wildfly.core}</version>
-		            <scope>test</scope>
-		        </dependency>
-		        <dependency>
-		            <groupId>org.wildfly.core</groupId>
-		            <artifactId>wildfly-launcher</artifactId>
-		            <version>${version.org.wildfly.core}</version>
-		            <scope>test</scope>
-		        </dependency>
-		        <dependency>
-		            <groupId>org.wildfly.plugins</groupId>
-		            <artifactId>wildfly-plugin-core</artifactId>
-		            <version>${version.org.wildfly.plugins}</version>
-		            <scope>test</scope>
-		        </dependency>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-common</artifactId>
+                    <version>${version.org.wildfly.arquillian}</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>*</groupId>
+                            <artifactId>*</artifactId>
+                        </exclusion>
+                    </exclusions>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <version>${version.org.wildfly.arquillian}</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>*</groupId>
+                            <artifactId>*</artifactId>
+                        </exclusion>
+                    </exclusions>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.core</groupId>
+                    <artifactId>wildfly-controller-client</artifactId>
+                    <version>${version.org.wildfly.core}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.core</groupId>
+                    <artifactId>wildfly-launcher</artifactId>
+                    <version>${version.org.wildfly.core}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-plugin-core</artifactId>
+                    <version>${version.org.wildfly.plugins}</version>
+                    <scope>test</scope>
+                </dependency>
             </dependencies>
 
             <build>
@@ -664,30 +664,30 @@
                             </execution>
                         </executions>
                     </plugin>
-		            <plugin>
-		                <groupId>org.wildfly.plugins</groupId>
-		                <artifactId>wildfly-maven-plugin</artifactId>
-		                <version>${version.org.wildfly.wildfly-maven-plugin}</version>
-		                <configuration>
-		                    <skip>${wildfly.skip}</skip>
-		                </configuration>
-		                <executions>
-		                    <execution>
-		                        <id>configure-server</id>
-		                        <phase>compile</phase>
-		                        <goals>
-		                            <goal>execute-commands</goal>
-		                        </goals>
-		                        <configuration>
-		                            <jboss-home>${wildfly.home}</jboss-home>
-		                            <offline>true</offline>
-		                            <scripts>
-		                                <script>${project.basedir}/wildfly/configure-server.cli</script>
-		                            </scripts>
-		                        </configuration>
-		                    </execution>
-		                </executions>
-		            </plugin>
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-maven-plugin</artifactId>
+                        <version>${version.org.wildfly.wildfly-maven-plugin}</version>
+                        <configuration>
+                            <skip>${wildfly.skip}</skip>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>configure-server</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>execute-commands</goal>
+                                </goals>
+                                <configuration>
+                                    <jboss-home>${wildfly.home}</jboss-home>
+                                    <offline>true</offline>
+                                    <scripts>
+                                        <script>${project.basedir}/wildfly/configure-server.cli</script>
+                                    </scripts>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <groupId>com.github.ekryd.echo-maven-plugin</groupId>
                         <artifactId>echo-maven-plugin</artifactId>
@@ -708,31 +708,31 @@
                         </executions>
                     </plugin>
                     
-		            <plugin>
-		                <groupId>org.apache.maven.plugins</groupId>
-		                <artifactId>maven-surefire-plugin</artifactId>
-		                <configuration>
-		                    <!-- tag::logging[] -->
-		                    <systemProperties>
-		                        <property>
-		                            <name>java.util.logging.config.file</name>
-		                            <value>${logging.config}</value>
-		                        </property>
-		                    </systemProperties>
-		                    <!-- end::logging[] -->
-		                    <!-- tag::ignore[] -->
-		                    <systemPropertyVariables>
-		                        <!-- Properties shared with Arquillian -->
-		                        <tck_server>${jboss.server.name}</tck_server>
-		                        <tck_hostname>localhost</tck_hostname>
-		                        <tck_username>tck_username</tck_username>
-		                        <tck_password>tck_password</tck_password>
-		                        <tck_port>8080</tck_port>
-		                        <tck_port_secure>8443</tck_port_secure>
-		                    </systemPropertyVariables>
-		                    <!-- end::ignore[] -->
-		                </configuration>
-		            </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <!-- tag::logging[] -->
+                            <systemProperties>
+                                <property>
+                                    <name>java.util.logging.config.file</name>
+                                    <value>${logging.config}</value>
+                                </property>
+                            </systemProperties>
+                            <!-- end::logging[] -->
+                            <!-- tag::ignore[] -->
+                            <systemPropertyVariables>
+                                <!-- Properties shared with Arquillian -->
+                                <tck_server>${jboss.server.name}</tck_server>
+                                <tck_hostname>localhost</tck_hostname>
+                                <tck_username>tck_username</tck_username>
+                                <tck_password>tck_password</tck_password>
+                                <tck_port>8080</tck_port>
+                                <tck_port_secure>8443</tck_port_secure>
+                            </systemPropertyVariables>
+                            <!-- end::ignore[] -->
+                        </configuration>
+                    </plugin>
                 </plugins>
                 
                 <testResources>
@@ -758,7 +758,7 @@
                 <debugJvmArgs>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:${debug.port}</debugJvmArgs>
             </properties>
         </profile>
-	<!-- 
+    <!-- 
             The profiles for Tomcat and Piranha are currently out of date and don't' work.
             They are here as starter for future working profiles.
         -->
@@ -777,7 +777,7 @@
                 <!-- Java EE based client dependencies to contact a server via WebSocket or REST -->
                 <dependency>
                     <groupId>org.omnifaces.arquillian</groupId>
-    				<artifactId>glassfish-client-ee9</artifactId>
+                    <artifactId>glassfish-client-ee9</artifactId>
                     <scope>test</scope>
                 </dependency>
 
